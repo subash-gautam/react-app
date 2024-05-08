@@ -4,9 +4,22 @@ import React, { useState } from "react";
 export default function TextForm(props) {
     const [text, setText] = useState("Enter text here.");
 
-    const handleUCClick = () => {
+    const handleUcClick = () => {
         const newText = text.toUpperCase();
         setText(newText);
+    };
+    const handleLcClick = () => {
+        const newText = text.toLowerCase();
+        setText(newText);
+    };
+    const handleClrClick = () => {
+        const newText = "";
+        setText(newText);
+    };
+    const speak = () => {
+        let msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        window.speechSynthesis.speak(msg);
     };
 
     const handleOnChange = (event) => {
@@ -24,9 +37,36 @@ export default function TextForm(props) {
                         id="exampleFormControlTextarea1"
                         rows="11"></textarea>
                 </div>
-                <button className="btn btn-primary" onClick={handleUCClick}>
+                <button
+                    className="btn btn-primary mx-3 my-3"
+                    onClick={handleUcClick}>
                     Convert to Upper case
                 </button>
+                <button
+                    className="btn btn-primary mx-3 my-3"
+                    onClick={handleLcClick}>
+                    Convert to Lower case
+                </button>
+                <button
+                    className="btn btn-primary mx-3 my-3"
+                    onClick={handleClrClick}>
+                    Clear
+                </button>
+                <button
+                    type="submit"
+                    onClick={speak}
+                    className="btn btn-warning mx-3 my-3">
+                    Speak
+                </button>
+            </div>
+            <div className="container">
+                <p>
+                    No of words : {text.split(" ").length}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No of letters :
+                    {text.length}
+                </p>
+                text summary: <br />
+                {text}
             </div>
         </div>
     );
