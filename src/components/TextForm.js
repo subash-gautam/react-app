@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import PropTypes from "prop-types";
 
 export default function TextForm(props) {
-    const [text, setText] = useState("Enter text here.");
+    const [text, setText] = useState("");
 
     const handleUcClick = () => {
         const newText = text.toUpperCase();
@@ -26,12 +26,19 @@ export default function TextForm(props) {
         setText(event.target.value);
     };
     return (
-        <div>
-            <div className="container my-3">
-                <h1 className="my-3">{props.heading}</h1>
+        <div className={`bg-${props.mode}`}>
+            <div className={`container my-3 bg-${props.mode}`}>
+                <h1
+                    className={`my-3 text-${
+                        props.mode === "dark" ? "light" : "dark"
+                    }`}>
+                    {props.heading}
+                </h1>
                 <div className="my-3">
                     <textarea
-                        className="form-control"
+                        className={`form-control bg-${props.mode} text-${
+                            props.mode === "dark" ? "light" : "dark"
+                        }`}
                         value={text}
                         onChange={handleOnChange}
                         id="exampleFormControlTextarea1"
@@ -60,13 +67,21 @@ export default function TextForm(props) {
                 </button>
             </div>
             <div className="container">
-                <p>
+                <p
+                    className={`text-${
+                        props.mode === "dark" ? "light" : "dark"
+                    }`}>
                     No of words : {text.split(" ").length}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No of letters :
                     {text.length}
                 </p>
-                text summary: <br />
-                {text}
+                <p
+                    className={`text-${
+                        props.mode === "dark" ? "light" : "dark"
+                    }`}>
+                    text summary: <br />
+                    {text}
+                </p>
             </div>
         </div>
     );

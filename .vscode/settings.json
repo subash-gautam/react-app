@@ -1,0 +1,5 @@
+{
+    "prettier.bracketSameLine": true,
+    "prettier.singleQuote": false,
+    "prettier.singleAttributePerLine": false
+}

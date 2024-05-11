@@ -1,17 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-export default function Navbar({
-    title = "Title Nadeko?",
-    nav1 = "Home",
-    nav2 = "Contact",
-    nav3 = "About Us",
-    pg = undefined,
-}) {
+export default function Navbar(props) {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav
+            className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
+            <p></p>
             <div className="container-fluid">
                 <a className="navbar-brand" href="/">
-                    {title}
+                    {props.title}
                 </a>
                 <button
                     className="navbar-toggler"
@@ -32,7 +28,7 @@ export default function Navbar({
                                 className="nav-link "
                                 aria-current="page"
                                 href="/">
-                                {pg}
+                                {props.pg}
                             </a>
                         </li>
                         <li className="nav-item">
@@ -40,7 +36,7 @@ export default function Navbar({
                                 className="nav-link active"
                                 aria-current="page"
                                 href="/">
-                                {nav1}
+                                {props.nav1}
                             </a>
                         </li>
                         <li className="nav-item">
@@ -48,7 +44,7 @@ export default function Navbar({
                                 className="nav-link active"
                                 aria-current="page"
                                 href="/">
-                                {nav2}
+                                {props.nav2}
                             </a>
                         </li>
                         <li className="nav-item">
@@ -56,10 +52,28 @@ export default function Navbar({
                                 className="nav-link active"
                                 aria-current="page"
                                 href="/">
-                                {nav3}
+                                {props.nav3}
                             </a>
                         </li>
                     </ul>
+                    <div className="form-check form-switch">
+                        <input
+                            className="form-check-input"
+                            onClick={function () {
+                                props.toggleMode(props.mode);
+                            }}
+                            type="checkbox"
+                            role="switch"
+                            id="flexSwitchCheckDefault"
+                        />
+                        <label
+                            className={`form-check-label text-${
+                                props.mode === "dark" ? "light" : "dark"
+                            }`}
+                            htmlFor="flexSwitchCheckDefault">
+                            Toggle Mode
+                        </label>
+                    </div>
                 </div>
             </div>
         </nav>
