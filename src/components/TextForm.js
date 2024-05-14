@@ -7,6 +7,7 @@ export default function TextForm(props) {
     const handleUcClick = () => {
         const newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to Upper Case", "warning");
     };
     const handleLcClick = () => {
         const newText = text.toLowerCase();
@@ -26,8 +27,8 @@ export default function TextForm(props) {
         setText(event.target.value);
     };
     return (
-        <div className={`bg-${props.mode}`}>
-            <div className={`container my-3 bg-${props.mode}`}>
+        <div>
+            <div className={`container my-3`}>
                 <h1
                     className={`my-3 text-${
                         props.mode === "dark" ? "light" : "dark"
