@@ -12,15 +12,18 @@ export default function TextForm(props) {
     const handleLcClick = () => {
         const newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to Lower Case", "warning");
     };
     const handleClrClick = () => {
         const newText = "";
         setText(newText);
+        props.showAlert("Text cleared.", "warning");
     };
     const speak = () => {
         let msg = new SpeechSynthesisUtterance();
         msg.text = text;
         window.speechSynthesis.speak(msg);
+        props.showAlert("Speaking .......", "warning");
     };
 
     const handleOnChange = (event) => {
